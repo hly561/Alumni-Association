@@ -1,0 +1,23 @@
+<t-navbar title="我的兴趣" left-arrow />
+
+<view class="interest-tip">
+  <text>为了更好的为您推荐您感兴趣的活动，请选择您的兴趣爱好，设置后我们会在首页的"推荐"为您个性化推送活动啦～</text>
+</view>
+
+<view class="interest-form">
+  <view wx:for="{{interestCategories}}" wx:for-item="categoryItem" wx:key="category">
+    <view class="category-title">{{categoryItem.category}}</view>
+    <view class="options-list">
+      <view
+        wx:for="{{categoryItem.options}}"
+        wx:for-item="optionItem"
+        wx:key="*this"
+        class="option-tag {{selectedInterests.includes(optionItem) ? 'selected' : ''}}"
+        data-interest="{{optionItem}}"
+        bindtap="toggleInterest"
+      >
+        {{optionItem}}
+      </view>
+    </view>
+  </view>
+</view>

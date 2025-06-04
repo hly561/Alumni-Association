@@ -1,0 +1,26 @@
+<view class="message-page">
+  <t-navbar title="消息" />
+  <view class="message-container">
+    <t-pull-down-refresh value="{{isRefreshing}}" bindrefresh="onRefresh">
+      <block wx:if="{{messageList && messageList.length > 0}}">
+        <view class="message-list">
+          <view class="message-item" wx:for="{{messageList}}" wx:key="id" bindtap="onMessageTap" data-id="{{item.id}}">
+            <t-avatar image="{{item.avatar}}" size="large">
+              <t-icon wx:if="{{item.type === 'system'}}" name="notification" size="24" slot="icon" style="color: #0052d9;" />
+            </t-avatar>
+            <view class="message-content">
+              <view class="message-header">
+                <text class="name">{{item.name}}</text>
+                <text class="time">{{item.time}}</text>
+              </view>
+              <view class="message-text">{{item.lastMessage}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <t-empty icon="chat" description="暂无消息" />
+      </block>
+    </t-pull-down-refresh>
+  </view>
+</view>

@@ -1,0 +1,181 @@
+.activity-detail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.activity-detail-container {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  padding-bottom: 160rpx;
+}
+
+.activity-header {
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx 20rpx 1rpx 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.activity-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  margin-top: 20rpx;
+}
+
+.activity-info {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+  margin-top: 20rpx;
+}
+
+.activity-info text {
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.activity-description {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.activity-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+  color: #666;
+  margin: 1rpx 0;
+}
+
+.activity-footer text {
+  display: block;
+  margin: 1rpx 0;
+}
+
+.qr-code {
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 20rpx;
+}
+
+.register-button {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background-color: #1a73e8;
+  color: #fff;
+  border-radius: 10rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.registered-users {
+  margin-top: 20rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.participants-count {
+  font-size: 28rpx;
+  font-weight: normal;
+  color: #666;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.user-item {
+  margin-right: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-nickname {
+  font-weight: bold;
+  color: #333;
+}
+
+.user-school, .user-major, .user-graduation {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.user-school-major {
+  font-size: 24rpx;
+  color: #999;
+  display: inline-block;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.info-item t-icon {
+  margin-right: 80rpx;
+  flex-shrink: 0;
+}
+
+.info-item text {
+  line-height: 1.5;
+  padding-left: 20rpx;
+  padding-top: 8rpx;
+}
+
+.qrcode-section {
+  margin: 1rpx 0 40rpx 0;
+}
+
+.qrcode-image {
+  width: 300rpx;
+  height: 300rpx;
+  margin: 1rpx 0 1rpx -45rpx;
+  display: block;
+}

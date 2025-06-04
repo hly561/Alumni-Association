@@ -1,0 +1,56 @@
+<view class="page">
+  <view class="header">
+    <view class="back-button" bindtap="onBackTap">
+      <t-icon name="chevron-left" size="48rpx" />
+    </view>
+    <view class="page-title">选择城市</view>
+  </view>
+  <view class="letter-index" id="right">
+    <view class="letter-item" wx:for="{{letters}}" wx:key="*this" bindtap="letterclick" data-letter="{{item}}">{{item}}</view>
+  </view>
+  <view class="search-box">
+    <view class="search-icon">
+      <t-icon name="search" size="40rpx" />
+    </view>
+    <input class="search-input" placeholder="输入城市名称搜索" bindinput="onSearch" confirm-type="search" value="{{searchKeyword}}" />
+    <view class="clear-icon" wx:if="{{searchKeyword}}" bindtap="clearSearch">
+      <t-icon name="close-circle-filled" size="40rpx" />
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="content" scroll-into-view="{{toView}}" scroll-with-animation>
+    <!-- 搜索结果展示区域 -->
+    <block wx:if="{{isSearching}}">
+      <view class="search-result">
+        <view wx:if="{{searchResult.length === 0}}" class="no-result">未找到相关城市</view>
+        <view class="city-section-item" wx:for="{{searchResult}}" wx:key="*this" bindtap="onCitySelect" data-city="{{item}}">{{item}}</view>
+      </view>
+    </block>
+    
+    <!-- 常规城市列表展示 -->
+    <block wx:else>
+      <view class="location" id="dw">
+        <view class="location-title">当前定位城市</view>
+        <view class="location-city">{{currentCity || '定位中...'}}</view>
+      </view>
+
+      <view class="hot-cities">
+      <view class="section-title">热门城市</view>
+      <view class="city-grid">
+        <view class="city-item" wx:for="{{hotCities}}" wx:key="index" bindtap="onCitySelect" data-city="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view class="city-list">
+      <view class="city-section" wx:for="{{cityList}}" wx:key="initial">
+        <view class="city-section-title" id="{{item.initial}}">{{item.initial}}</view>
+        <view class="city-section-item" wx:for="{{item.cities}}" wx:key="name" wx:for-item="city" bindtap="onCitySelect" data-city="{{city}}">
+          {{city}}
+        </view>
+      </view>
+    </view>
+    </block>
+  </scroll-view>
+</view>

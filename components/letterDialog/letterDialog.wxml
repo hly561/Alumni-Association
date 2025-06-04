@@ -1,0 +1,3 @@
+<view class="letter-dialog" wx:if="{{isShow}}">
+  <view class="letter-text">{{letter}}</view>
+</view>

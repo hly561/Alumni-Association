@@ -1,0 +1,39 @@
+<view class="verify-container">
+  <view class="form-group">
+    <view class="form-item">
+      <text class="label">姓名</text>
+      <input class="input" placeholder="请输入姓名" value="{{formData.realname}}" data-field="realname" bindinput="onInputChange" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">毕业学校</text>
+      <input class="input" placeholder="请输入毕业学校" value="{{formData.school}}" data-field="school" bindinput="onInputChange" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">专业</text>
+      <input class="input" placeholder="请输入专业" value="{{formData.major}}" data-field="major" bindinput="onInputChange" />
+    </view>
+
+    <view class="form-item">
+      <text class="label">毕业年份</text>
+      <picker class="picker" mode="selector" range="{{years}}" value="{{selectedYearIndex}}" bindchange="onInputChange" data-field="graduationYear">
+        <view class="picker-text">{{formData.graduationYear || '请选择毕业年份'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">认证材料</text>
+      <view class="upload-container" bindtap="onChooseImage">
+        <image class="upload-image" src="{{formData.verifyImage}}" mode="aspectFit" wx:if="{{formData.verifyImage}}"></image>
+        <view class="upload-placeholder" wx:else>
+          <text class="upload-icon">+</text>
+          <text class="upload-text">上传图片</text>
+        </view>
+      </view>
+      <text class="upload-tip">请上传学生证、毕业证、学位证、学信网等相关证明材料</text>
+    </view>
+  </view>
+
+  <view class="submit-button" bindtap="onSubmit">提交认证</view>
+</view>

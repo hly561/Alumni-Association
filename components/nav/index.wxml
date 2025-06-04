@@ -1,0 +1,25 @@
+<view class="home-navbar">
+  <t-navbar title="{{ titleText }}"></t-navbar>
+  <view class="home-navbar__search" wx:if="{{navType === 'search'}}">
+    <view class="home-navbar__search-location" bindtap="onLocationTap">
+      <t-icon name="location" />
+      <text class="location-text">{{selectedCity}}</text>
+      <t-icon name="chevron-down" class="arrow-icon" />
+    </view>
+    <t-search
+      shape="round"
+      placeholder="请输入活动标题"
+      value="{{searchValue}}"
+      bind:change="onSearchInput"
+      bind:clear="onSearchClear"
+    />
+  </view>
+  <t-drawer
+    style="padding-top: {{statusHeight}}px;"
+    visible="{{visible}}"
+    items="{{sidebar}}"
+    placement="left"
+    title="页面目录"
+    bind:item-click="itemClick"
+  />
+</view>

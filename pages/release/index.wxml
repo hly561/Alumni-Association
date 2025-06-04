@@ -1,0 +1,241 @@
+<t-navbar title="发布活动" left-arrow />
+<view class="page">
+  <view class="release-container">
+    <!-- 活动标题 -->
+    <t-input
+      label="活动标题"
+      placeholder="请输入活动标题"
+      value="{{title}}"
+      maxlength="20"
+      bind:change="onTitleChange"
+      suffix="{{title.length}}/20"
+    />
+    
+    <!-- 活动类型 -->
+    <t-cell
+      title="活动类型"
+      t-class="panel-item no-bottom-border"
+      bordered="{{false}}"
+    />
+
+    <view class="custom-category-list">
+      <view
+        wx:for="{{customCategoryOptions}}"
+        wx:key="value"
+        class="custom-category-item{{selectedCategory === item.value ? ' selected' : ''}}"
+        data-value="{{item.value}}"
+        bindtap="onSelectCategory"
+      >
+        {{item.text}}
+      </view>
+    </view>
+
+    <!-- 子活动类型标签列表 -->
+    <block wx:if="{{subCategoryOptions.length > 0}}">
+      <view class="sub-category-list">
+        <view
+          wx:for="{{subCategoryOptions}}"
+          wx:key="value"
+          class="sub-category-item{{selectedSubCategories === item.value ? ' selected' : ''}}"
+          data-value="{{item.value}}"
+          bind:tap="onSelectSubCategory"
+        >
+          {{item.text}}
+        </view>
+      </view>
+    </block>
+
+    <!-- 活动类型选项 -->
+    <view class="activity-category-container">
+      <t-radio-group value="{{activityCategory}}" bind:change="onActivityCategoryChange">
+        <t-radio 
+          wx:for="{{activityTypeOptions}}" 
+          wx:key="value" 
+          value="{{item.value}}" 
+          label="{{item.text}}" 
+          icon="none"
+          ext-class="activity-type-tag"
+          label-class="activity-type-tag-label"
+        />
+      </t-radio-group>
+    </view>
+    
+    <!-- 活动开始时间 -->
+    <t-cell 
+      title="活动开始时间" 
+      hover 
+      note="{{activityStartTime || '请选择活动开始时间'}}" 
+      arrow 
+      bindtap="showActivityStartTimePicker" 
+      t-class="panel-item" 
+    /> 
+    
+    <t-date-time-picker 
+      title="选择活动开始时间" 
+      visible="{{activityStartTimeVisible}}" 
+      mode="minute" 
+      value="{{activityStartTimeValue}}" 
+      format="YYYY-MM-DD HH:mm" 
+      bindchange="onActivityStartTimeConfirm" 
+      bindcancel="onActivityStartTimeCancel" 
+    />
+    
+    <!-- 活动结束时间 -->
+    <t-cell 
+      title="活动结束时间" 
+      hover 
+      note="{{activityEndTime || '请选择活动结束时间'}}" 
+      arrow 
+      bindtap="showActivityEndTimePicker" 
+      t-class="panel-item" 
+    /> 
+    
+    <t-date-time-picker 
+      title="选择活动结束时间" 
+      visible="{{activityEndTimeVisible}}" 
+      mode="minute" 
+      value="{{activityEndTimeValue}}" 
+      format="YYYY-MM-DD HH:mm" 
+      bindchange="onActivityEndTimeConfirm" 
+      bindcancel="onActivityEndTimeCancel" 
+    />
+    
+    <!-- 报名截止时间 -->
+    <t-cell 
+      title="报名截止时间" 
+      hover 
+      note="{{registrationDeadline || '请选择报名截止时间'}}" 
+      arrow 
+      bindtap="showRegistrationDeadlinePicker" 
+      t-class="panel-item" 
+    /> 
+    
+    <t-date-time-picker 
+      title="选择报名截止时间" 
+      visible="{{registrationDeadlineVisible}}" 
+      mode="minute" 
+      value="{{registrationDeadlineValue}}" 
+      format="YYYY-MM-DD HH:mm" 
+      bindchange="onRegistrationDeadlineConfirm" 
+      bindcancel="onRegistrationDeadlineCancel" 
+    />
+
+    <!-- 活动形式 -->
+    <t-cell title="活动形式" t-class="panel-item">
+      <t-radio-group value="{{activityType}}" bind:change="onActivityTypeChange" slot="note">
+        <t-radio value="offline" label="线下活动" />
+        <t-radio value="online" label="线上活动" />
+      </t-radio-group>
+    </t-cell>
+
+    <!-- 线下活动信息 -->
+    <block wx:if="{{activityType === 'offline'}}">
+      <t-cell 
+        title="活动城市" 
+        hover 
+        note="{{city || '请选择活动城市'}}"
+        arrow 
+        bindtap="onChooseCity"
+        t-class="panel-item" 
+      />
+      <t-input
+        label="详细地址"
+        placeholder="请选择详细地址"
+        value="{{address}}"
+        readonly="true"
+        bind:tap="onChooseAddress"
+      />
+    </block>
+
+    <!-- 线上活动信息 -->
+    <block wx:if="{{activityType === 'online'}}">
+      <t-input
+        label="会议链接"
+        placeholder="请输入会议链接"
+        value="{{meetingLink}}"
+        bind:change="onMeetingLinkChange"
+      />
+    </block>
+
+    <!-- 报名人数上限 -->
+    <t-cell title="报名人数上限" t-class="panel-item">
+      <view class="limit-container" slot="note">
+        <t-radio-group value="{{hasParticipantLimit}}" bind:change="onHasParticipantLimitChange">
+          <t-radio value="{{true}}" label="限制" />
+          <t-radio value="{{false}}" label="无限制" />
+        </t-radio-group>
+        <t-stepper wx:if="{{hasParticipantLimit}}" value="{{maxParticipants}}" min="1" max="500" step="1" bind:change="onMaxParticipantsChange" />
+      </view>
+    </t-cell>
+
+    <!-- 活动介绍 -->
+    <t-textarea
+      label="活动介绍"
+      placeholder="请输入活动介绍内容"
+      value="{{description}}"
+      maxlength="500"
+      disableDefaultPadding="{{true}}"
+      indicator
+      bind:change="onDescriptionChange"
+    />
+
+    <!-- 报名限制 -->
+    <t-cell title="报名限制" t-class="panel-item">
+      <t-radio-group value="{{registrationRestriction}}" bind:change="onRegistrationRestrictionChange" slot="note">
+        <t-radio value="all" label="所有人可参加" />
+        <t-radio value="school" label="限本校参加" />
+      </t-radio-group>
+    </t-cell>
+
+    <!-- 群聊二维码 -->
+    <t-cell title="群聊二维码" t-class="panel-item">
+      <view class="qrcode-upload-container" slot="note">
+        <t-upload
+          media-type="{{['image']}}"
+          files="{{qrcodeFiles}}"
+          max="1"
+          bind:success="onQrcodeUploadSuccess"
+          bind:remove="onQrcodeRemove"
+          bind:click="onQrcodeClick"
+          gridConfig="{{ {column: 1, width: 160, height: 160} }}"
+        />
+      </view>
+    </t-cell>
+
+    <view class="release-submit-container">
+    <t-button theme="primary" class="submit-btn" bind:tap="submitForm">发布活动</t-button>
+  </view>
+</view>
+
+  <!-- 活动类型选择器 -->
+  <!-- <t-action-sheet
+    visible="{{activityTypeSelectorVisible}}"
+    items="{{activityTypeOptions}}"
+    bind:selected="onActivityTypeSelect"
+    bind:cancel="hideActivityTypeSelector"
+    title="请选择活动类型"
+  /> -->
+
+  <!-- 地图选点弹窗 -->
+  <!-- <view class="map-modal" wx:if="{{showMapPicker}}">
+    <map
+      id="myMap"
+      longitude="{{longitude}}"
+      latitude="{{latitude}}"
+      scale="14"
+      show-location
+      bindregionchange="onMapRegionChange"
+      style="width: 100%; height: 100%;"
+    >
+      
+      <cover-image class="center-marker" src="/images/location.png" /> 
+    </map>
+    <view class="confirm-location-btn">
+      <t-button theme="primary" bind:tap="onConfirmLocation">确定位置</t-button>
+    </view>
+  </view> -->
+
+  </view>
+
+<!-- 提示信息 -->
+<t-toast id="t-toast" />

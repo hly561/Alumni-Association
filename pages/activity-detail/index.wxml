@@ -1,0 +1,47 @@
+<view class="activity-detail">
+  <view class="activity-detail-container">
+    <view class="activity-header">
+      <view class="activity-title">{{activity.title}}</view>
+      <view class="activity-info">
+        <view class="info-item">
+          <t-icon name="user" size="32rpx" />
+          <text>    {{activity.creatorName || '未设置'}} {{activity.createdBy.phoneNumber ? '(' + activity.createdBy.phoneNumber + ')' : ''}}</text>
+        </view>
+        <view class="info-item">
+          <t-icon name="time" size="32rpx" />
+          <text>    {{activity.activityStartTime}} - {{activity.activityEndTime}}</text>
+        </view>
+        <view class="info-item">
+          <t-icon name="location" size="32rpx" />
+          <text>    {{activity.locationText}}</text>
+          <text wx:if="{{activity.location && activity.location.meetingLink}}"> (会议链接: {{activity.location.meetingLink}})</text>
+        </view>
+      </view>
+      <view class="section-title">活动介绍</view>
+      <view class="activity-description">{{activity.description}}</view>
+      <view class="qrcode-section">
+        <view class="section-title">群聊二维码</view>
+        <image class="qrcode-image" src="{{activity.qrcodeUrl}}" mode="aspectFit" bindtap="previewQrCode"></image>
+      </view>
+    </view>
+    <view class="registered-users">
+      <view class="section-title">
+        <text>已报名</text>
+        <text class="participants-count">{{activity.participants.length}}/{{activity.participantLimit > 0 ? activity.participantLimit : '不限'}}</text>
+      </view>
+      <view class="user-list">
+        <view wx:for="{{activity.registeredUsers}}" wx:key="index" class="user-item">
+          <image class="user-avatar" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="user-info">
+            <text class="user-nickname">{{item.name}}</text>
+            <text class="user-school-major">{{item.school}} {{item.major}}</text>
+            <text class="user-graduation">{{item.graduationYear}} 届</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <t-button theme="primary" bindtap="{{activity.isRegistered ? 'onCancelRegister' : 'onRegister'}}" class="register-button">
+      {{activity.isRegistered ? '取消报名' : '立即报名'}}
+    </t-button>
+  </view>
+</view>

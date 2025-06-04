@@ -1,0 +1,71 @@
+/**app.wxss**/
+
+/* 全局样式 */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  background-color: #f3f3f3;
+}
+
+/* 清除浮动 */
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+}
+
+/* 常用颜色 */
+.text-primary {
+  color: #000000;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+/* 常用布局 */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+/* 常用间距 */
+.mt-2 {
+  margin-top: 16rpx;
+}
+
+.mb-2 {
+  margin-bottom: 16rpx;
+}
+
+.p-3 {
+  padding: 24rpx;
+}
+
+/* 强制覆盖 TDesign radio 组件选中样式 */
+.t-radio.t-is-checked {
+  background-color: #0052d9 !important;
+  border-radius: 16rpx !important;
+}
+.t-radio.t-is-checked .t-radio__label,
+.t-radio.t-is-checked .my-radio-label {
+  color: #fff !important;
+}
+.t-radio__label,
+.my-radio-label {
+  color: #666 !important;
+  font-size: 26rpx !important;
+}

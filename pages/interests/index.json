@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的兴趣",
+  "usingComponents": {
+    "t-navbar": "tdesign-miniprogram/navbar/navbar"
+  }
+}

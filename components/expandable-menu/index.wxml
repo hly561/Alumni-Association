@@ -1,0 +1,22 @@
+<view class="menu-container">
+  <view class="menu-item">
+    <view class="menu-list">
+      <view wx:for="{{menuItems}}" wx:key="index"
+            class="menu-item-header {{item.expanded ? 'expanded' : ''}}" 
+            bindtap="onMenuItemTap" 
+            data-index="{{index}}">
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+    <view wx:for="{{menuItems}}" wx:key="index" 
+          class="submenu-container {{item.expanded ? 'expanded' : ''}}">
+      <view wx:for="{{item.subItems}}" wx:for-item="subItem" wx:key="subIndex" 
+            class="submenu-item {{subItem.active ? 'active' : ''}}" 
+            bindtap="onSubItemTap" 
+            data-parent-index="{{index}}" 
+            data-sub-index="{{index}}">
+        {{subItem.text}}
+      </view>
+    </view>
+  </view>
+</view>

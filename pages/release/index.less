@@ -1,0 +1,205 @@
+/* pages/release/index.wxss */
+.page {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+.release-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #ffffff; /* 添加白色背景 */
+
+  .placeholder {
+    color: #999999;
+  }
+
+  .t-radio-group {
+    display: flex;
+    flex-direction: row;
+    gap: 32rpx;
+    flex-wrap: nowrap;
+    
+    .t-radio {
+      white-space: nowrap;
+      margin-right: 0;
+    }
+  }
+
+  .submit-btn {
+    margin: 24rpx 32rpx;
+  }
+
+  &.panel-item {
+    /* Add bottom border for list items */
+    // border-bottom: 1rpx solid #e7e7e7; /* Commented out */
+    border-bottom: none !important;
+    padding: 24rpx 32rpx;
+    margin-bottom: 0 !important;
+  }
+
+  &.panel-item.no-bottom-border {
+    // ... existing code ...
+    padding-bottom: 8rpx !important; /* Reduce bottom padding */
+  }
+}
+
+/* 城市选择器样式 */
+.city-picker {
+  background-color: #ffffff;
+  border-radius: 16rpx 16rpx 0 0;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24rpx 32rpx;
+    border-bottom: 1rpx solid #e7e7e7;
+  }
+
+  &__title {
+    font-size: 32rpx;
+    font-weight: 500;
+  }
+
+  &__cancel, &__confirm {
+    font-size: 28rpx;
+    padding: 8rpx;
+  }
+
+  &__cancel {
+    color: #999999;
+  }
+
+  &__confirm {
+    color: #0052d9;
+  }
+
+  &__content {
+    max-height: 600rpx;
+    padding: 32rpx;
+  }
+}
+
+.qrcode-upload-container {
+  // ... existing code ...
+}
+
+.release-submit-container {
+  margin-top: 32rpx;
+  padding: 0 32rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.release-submit-container .submit-btn {
+  width: 90%;
+}
+
+/* 调整活动介绍标签字体大小 */
+.t-textarea__label {
+  font-size: 32rpx !important;
+  font-weight: 500;
+}
+
+/* 覆盖 TDesign radio 组件样式 */
+.t-radio__label {
+  color: #666666 !important;
+  font-size: 26rpx !important;
+}
+
+.t-radio.t-is-checked {
+  background-color: #0052d9 !important;
+}
+
+.t-radio.t-is-checked .t-radio__label {
+  color: #ffffff !important;
+}
+
+/* 自定义 radio 外部样式类 */
+.my-radio {
+  background-color: #f5f5f5 !important;
+  border-radius: 16rpx !important;
+}
+.my-radio.t-is-checked {
+  background-color: #0052d9 !important;
+}
+.my-radio-label {
+  color: #666 !important;
+  font-size: 26rpx !important;
+}
+.my-radio.t-is-checked .my-radio-label {
+  color: #fff !important;
+}
+
+/* 注释掉全局 page .t-radio 相关样式，避免冲突 */
+// page .t-radio.t-is-checked {
+//   background-color: #0052d9 !important;
+//   border-radius: 16rpx !important;
+// }
+// page .t-radio.t-is-checked .t-radio__label {
+//   color: #fff !important;
+// }
+// page .t-radio__label {
+//   color: #666 !important;
+//   font-size: 26rpx !important;
+// }
+
+.custom-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx 24rpx;
+  padding: 4rpx 32rpx 0 32rpx; /* Reduce top padding */
+  margin-bottom: 16rpx;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.custom-category-item {
+  padding: 10rpx 32rpx;
+  border-radius: 24rpx;
+  background: #f5f5f5;
+  color: #666;
+  font-size: 28rpx;
+  transition: all 0.2s;
+}
+
+.custom-category-item.selected {
+  background: #0052d9;
+  color: #fff;
+}
+
+/* 子活动类型标签列表样式 */
+.sub-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  padding: 0 32rpx 16rpx 32rpx;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sub-category-item {
+  padding: 12rpx 32rpx;
+  border-radius: 20rpx;
+  background: #f5f5f5;
+  color: #666;
+  font-size: 24rpx;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 1;
+  min-width: 120rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.sub-category-item.selected {
+  background: #0052d9 !important;
+  color: #ffffff !important;
+  transform: scale(1.05);
+}

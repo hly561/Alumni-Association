@@ -1,0 +1,101 @@
+<nav nav-type="search" titleText="校友会活动平台" selectedCity="{{selectedCity}}" searchValue="{{searchValue}}" bind:searchinput="onSearchInput" bind:searchclear="onSearchClear" />
+<view class="home-container">
+  <view class="home-content">
+    <t-tabs value="{{currentTab}}" defaultValue="recommend" bind:change="onTabChange">
+      <t-tab-panel label="推荐" value="recommend">
+        <t-pull-down-refresh
+          value="{{enable}}"
+          bind:refresh="onRefresh"
+          loadingTexts="{{['下拉刷新', '松手刷新', '正在刷新', '刷新完成']}}"
+        >
+          <view class="home-card-list">
+            <view
+              wx:for="{{activities}}"
+              wx:key="_id"
+              class="activity-card"
+              bindtap="onViewDetail"
+              data-id="{{item._id}}"
+            >
+              <view class="activity-title">{{item.title}}</view>
+              <view class="activity-info">
+                <view class="info-item">
+                  <t-icon name="time" size="32rpx" />
+                  <text>{{item.activityStartTime}} - {{item.activityEndTime}}</text>
+                </view>
+                <view class="info-item">
+                  <t-icon name="location" size="32rpx" />
+                  <text>{{item.locationText}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </t-pull-down-refresh>
+      </t-tab-panel>
+      <t-tab-panel label="同城" value="city">
+        <t-pull-down-refresh
+          value="{{enable}}"
+          bind:refresh="onRefresh"
+          loadingTexts="{{['下拉刷新', '松手刷新', '正在刷新', '刷新完成']}}"
+        >
+          <view class="home-card-list">
+            <view
+              wx:for="{{activities}}"
+              wx:key="_id"
+              class="activity-card"
+              bindtap="onViewDetail"
+              data-id="{{item._id}}"
+            >
+              <view class="activity-title">{{item.title}}</view>
+              <view class="activity-info">
+                <view class="info-item">
+                  <t-icon name="time" size="32rpx" />
+                  <text>{{item.activityStartTime}} - {{item.activityEndTime}}</text>
+                </view>
+                <view class="info-item">
+                  <t-icon name="location" size="32rpx" />
+                  <text>{{item.locationText}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </t-pull-down-refresh>
+      </t-tab-panel>
+      <t-tab-panel label="同校" value="follow">
+        <t-pull-down-refresh
+          value="{{enable}}"
+          bind:refresh="onRefresh"
+          loadingTexts="{{['下拉刷新', '松手刷新', '正在刷新', '刷新完成']}}"
+        >
+          <view class="home-card-list">
+            <view
+              wx:for="{{activities}}"
+              wx:key="_id"
+              class="activity-card"
+              bindtap="onViewDetail"
+              data-id="{{item._id}}"
+            >
+              <view class="activity-title">{{item.title}}</view>
+              <view class="activity-info">
+                <view class="info-item">
+                  <t-icon name="time" size="32rpx" />
+                  <text>{{item.activityStartTime}} - {{item.activityEndTime}}</text>
+                </view>
+                <view class="info-item">
+                  <t-icon name="location" size="32rpx" />
+                  <text>{{item.locationText}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </t-pull-down-refresh>
+      </t-tab-panel>
+    </t-tabs>
+  </view>
+</view>
+
+<view class="home-release">
+  <t-button theme="primary" icon="add" shape="round" bindtap="goRelease" class="small-release-button">
+    发布
+  </t-button>
+</view>
+<t-message id="t-message" />
